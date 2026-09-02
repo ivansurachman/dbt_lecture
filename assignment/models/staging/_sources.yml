@@ -19,3 +19,105 @@ sources:
       - name: address
       - name: city
       - name: country
+
+# Staging models for the Pagila source tables.
+# These are used to transform the raw data into a more structured format.
+
+models:
+  - name: stg_customers
+    description: "Staging model for the `customer` table."
+    columns:
+      - name: customer_id
+        description: "Primary key for the customer."
+      - name: first_name
+        description: "Customer's first name."
+      - name: last_name
+        description: "Customer's last name."
+      - name: email
+        description: "Customer's email address."
+      - name: is_active
+        description: "Indicates if the customer is active (1) or inactive (0)."
+      - name: create_at
+        description: "Date when the customer record was created."
+      - name: last_update
+        description: "Timestamp of the last update to the customer record."
+  
+  - name: stg_rentals
+    description: "Staging model for the `rental` table."
+    columns:
+      - name: rental_id
+        description: "Primary key for the rental."
+      - name: customer_id
+        description: "Foreign key to the customer who rented the item."
+      - name: inventory_id
+        description: "Foreign key to the inventory item being rented."
+      - name: staff_id
+        description: "Foreign key to the staff member who processed the rental."
+      - name: rental_at
+        description: "Date and time when the rental occurred."
+      - name: returned_at
+        description: "Date and time when the rental was returned."
+      - name: last_update
+        description: "Timestamp of the last update to the rental record."
+  
+  - name: stg_payments
+    description: "Staging model for the `payment` table."
+    columns:
+      - name: payment_id
+        description: "Primary key for the payment."
+      - name: customer_id
+        description: "Foreign key to the customer who made the payment."
+      - name: rental_id
+        description: "Foreign key to the rental associated with the payment."
+      - name: staff_id
+        description: "Foreign key to the staff member who processed the payment."
+      - name: amount
+        description: "Amount of the payment."
+      - name: paid_at
+        description: "Date and time when the payment was made."
+      - name: last_update
+        description: "Timestamp of the last update to the payment record."
+  
+  - name: stg_films
+    description: "Staging model for the `film` table."
+    columns:
+      - name: film_id
+        description: "Primary key for the film."
+      - name: title
+        description: "Title of the film."
+      - name: description
+        description: "Description of the film."
+      - name: rental_rate
+        description: "Rate at which the film can be rented."
+      - name: replacement_cost
+        description: "Cost to replace the film if lost or damaged."
+      - name: length_minutes
+        description: "Length of the film in minutes."
+      - name: rating
+        description: "MPAA rating of the film (e.g., G, PG, PG-13, R, NC-17)."
+      - name: last_update
+        description: "Timestamp of the last update to the film record."
+  
+  - name: stg_inventory
+    description: "Staging model for the `inventory` table."
+    columns:
+      - name: inventory_id
+        description: "Primary key for the inventory item."
+      - name: film_id
+        description: "Foreign key to the film associated with the inventory item."
+      - name: store_id
+        description: "Foreign key to the store where the inventory item is located."
+      - name: last_update
+        description: "Timestamp of the last update to the inventory record."
+  
+  - name: stg_stores
+    description: "Staging model for the `store` table."
+    columns:
+      - name: store_id
+        description: "Primary key for the store."
+      - name: manager_staff_id
+        description: "Foreign key to the staff member who manages the store."
+      - name: address_id
+        description: "Foreign key to the address of the store."
+      - name: last_update
+        description: "Timestamp of the last update to the store record."
