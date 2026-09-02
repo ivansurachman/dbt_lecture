@@ -8,6 +8,7 @@ select
     customer_id,
     inventory_id,
     staff_id,
-    rental_at,
-    returned_at
+    rental_date as rental_at,
+    return_date as returned_at,
+    last_update
 from source

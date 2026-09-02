@@ -57,6 +57,8 @@ models:
         description: "Date and time when the rental occurred."
       - name: returned_at
         description: "Date and time when the rental was returned."
+      - name: last_update
+        description: "Timestamp of the last update to the rental record."
   
   - name: stg_payments
     description: "Staging model for the `payment` table."
