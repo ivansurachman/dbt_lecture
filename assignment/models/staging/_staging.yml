@@ -93,6 +93,8 @@ models:
         description: "Length of the film in minutes."
       - name: rating
         description: "MPAA rating of the film (e.g., G, PG, PG-13, R, NC-17)."
+      - name: last_update
+        description: "Timestamp of the last update to the film record."
   
   - name: stg_inventory
     description: "Staging model for the `inventory` table."
