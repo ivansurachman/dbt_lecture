@@ -57,8 +57,6 @@ models:
         description: "Date and time when the rental occurred."
       - name: returned_at
         description: "Date and time when the rental was returned."
-      - name: last_update
-        description: "Timestamp of the last update to the rental record."
   
   - name: stg_payments
     description: "Staging model for the `payment` table."
@@ -75,8 +73,6 @@ models:
         description: "Amount of the payment."
       - name: paid_at
         description: "Date and time when the payment was made."
-      - name: last_update
-        description: "Timestamp of the last update to the payment record."
   
   - name: stg_films
     description: "Staging model for the `film` table."
@@ -95,8 +91,6 @@ models:
         description: "Length of the film in minutes."
       - name: rating
         description: "MPAA rating of the film (e.g., G, PG, PG-13, R, NC-17)."
-      - name: last_update
-        description: "Timestamp of the last update to the film record."
   
   - name: stg_inventory
     description: "Staging model for the `inventory` table."
@@ -107,8 +101,6 @@ models:
         description: "Foreign key to the film associated with the inventory item."
       - name: store_id
         description: "Foreign key to the store where the inventory item is located."
-      - name: last_update
-        description: "Timestamp of the last update to the inventory record."
   
   - name: stg_stores
     description: "Staging model for the `store` table."
@@ -119,5 +111,3 @@ models:
         description: "Foreign key to the staff member who manages the store."
       - name: address_id
         description: "Foreign key to the address of the store."
-      - name: last_update
-        description: "Timestamp of the last update to the store record."
