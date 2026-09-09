@@ -188,3 +188,39 @@ models:
       - name: last_update
         description: "Timestamp of the last update to the store record."
         data_tests: [not_null]
+
+  - name: stg_categories
+    description: "Staging model for the `category` table."
+    columns:
+      - name: category_id
+        description: "Primary key for the category."
+        data_tests: [unique, not_null]
+      - name: name
+        description: "Name of the category."
+        data_tests: [not_null]
+      - name: last_update
+        description: "Timestamp of the last update to the category record."
+        data_tests: [not_null]
+
+  - name: stg_film_categories
+    description: "Staging model for the `film_category` table."
+    columns:
+      - name: film_id
+        description: "Foreign key to the film."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_films')
+                field: film_id
+      - name: category_id
+        description: "Foreign key to the category."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_categories')
+                field: category_id
+      - name: last_update
+        description: "Timestamp of the last update to the film_category record."
+        data_tests: [not_null]
