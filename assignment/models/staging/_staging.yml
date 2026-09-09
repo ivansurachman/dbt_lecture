@@ -29,93 +29,162 @@ models:
     columns:
       - name: customer_id
         description: "Primary key for the customer."
+        data_tests: [unique, not_null]
       - name: first_name
         description: "Customer's first name."
+        data_tests: [not_null]
       - name: last_name
         description: "Customer's last name."
+        data_tests: [not_null]
       - name: email
         description: "Customer's email address."
+        data_tests: [not_null]
       - name: is_active
         description: "Indicates if the customer is active (1) or inactive (0)."
+        data_tests: [not_null]
       - name: create_at
         description: "Date when the customer record was created."
+        data_tests: [not_null]
       - name: last_update
         description: "Timestamp of the last update to the customer record."
-  
+        data_tests: [not_null]
+
   - name: stg_rentals
     description: "Staging model for the `rental` table."
     columns:
       - name: rental_id
         description: "Primary key for the rental."
+        data_tests: [unique, not_null]
       - name: customer_id
         description: "Foreign key to the customer who rented the item."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
       - name: inventory_id
         description: "Foreign key to the inventory item being rented."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_inventory')
+                field: inventory_id
       - name: staff_id
         description: "Foreign key to the staff member who processed the rental."
+        data_tests: [not_null]
       - name: rental_at
         description: "Date and time when the rental occurred."
+        data_tests: [not_null]
       - name: returned_at
         description: "Date and time when the rental was returned."
       - name: last_update
         description: "Timestamp of the last update to the rental record."
-  
+        data_tests: [not_null]
+
   - name: stg_payments
     description: "Staging model for the `payment` table."
     columns:
       - name: payment_id
         description: "Primary key for the payment."
+        data_tests: [unique, not_null]
       - name: customer_id
         description: "Foreign key to the customer who made the payment."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
       - name: rental_id
         description: "Foreign key to the rental associated with the payment."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_rentals')
+                field: rental_id
       - name: staff_id
         description: "Foreign key to the staff member who processed the payment."
+        data_tests: [not_null]
       - name: amount
         description: "Amount of the payment."
+        data_tests: [not_null]
       - name: paid_at
         description: "Date and time when the payment was made."
-  
+        data_tests: [not_null]
+
   - name: stg_films
     description: "Staging model for the `film` table."
     columns:
       - name: film_id
         description: "Primary key for the film."
+        data_tests: [unique, not_null]
       - name: title
         description: "Title of the film."
+        data_tests: [not_null]
       - name: description
         description: "Description of the film."
       - name: rental_rate
         description: "Rate at which the film can be rented."
+        data_tests: [not_null]
       - name: replacement_cost
         description: "Cost to replace the film if lost or damaged."
+        data_tests: [not_null]
       - name: length_minutes
         description: "Length of the film in minutes."
+        data_tests: [not_null]
       - name: rating
         description: "MPAA rating of the film (e.g., G, PG, PG-13, R, NC-17)."
+        data_tests: 
+          - not_null
+          - accepted_values:
+              arguments: 
+                - type: string
+                - values: ['G', 'PG', 'PG-13', 'R', 'NC-17']
       - name: last_update
         description: "Timestamp of the last update to the film record."
-  
+        data_tests: [not_null]
+
   - name: stg_inventory
     description: "Staging model for the `inventory` table."
     columns:
       - name: inventory_id
         description: "Primary key for the inventory item."
+        data_tests: [unique, not_null]
       - name: film_id
         description: "Foreign key to the film associated with the inventory item."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_films')
+                field: film_id
       - name: store_id
         description: "Foreign key to the store where the inventory item is located."
+        data_tests: 
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
       - name: last_update
         description: "Timestamp of the last update to the inventory record."
+        data_tests: [not_null]
 
   - name: stg_stores
     description: "Staging model for the `store` table."
     columns:
       - name: store_id
         description: "Primary key for the store."
+        data_tests: [unique, not_null]
       - name: manager_staff_id
         description: "Foreign key to the staff member who manages the store."
+        data_tests: [not_null]
       - name: address_id
         description: "Foreign key to the address of the store."
+        data_tests: [not_null]
       - name: last_update
         description: "Timestamp of the last update to the store record."
+        data_tests: [not_null]
