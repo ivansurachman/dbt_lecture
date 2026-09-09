@@ -117,3 +117,5 @@ models:
         description: "Foreign key to the staff member who manages the store."
       - name: address_id
         description: "Foreign key to the address of the store."
+      - name: last_update
+        description: "Timestamp of the last update to the store record."
