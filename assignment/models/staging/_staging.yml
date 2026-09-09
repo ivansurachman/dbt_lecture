@@ -105,7 +105,9 @@ models:
         description: "Foreign key to the film associated with the inventory item."
       - name: store_id
         description: "Foreign key to the store where the inventory item is located."
-  
+      - name: last_update
+        description: "Timestamp of the last update to the inventory record."
+
   - name: stg_stores
     description: "Staging model for the `store` table."
     columns:
