@@ -39,4 +39,4 @@ left join stg_film_category fc on f.film_id = fc.film_id
 left join stg_categories c on fc.category_id = c.category_id
 left join stg_inventory i on f.film_id = i.film_id
 left join stg_rentals r on i.inventory_id = r.inventory_id
-group by f.film_id, f.title, f.rating, rd.rating_description, f.rental_rate
+group by f.film_id, f.title, f.rating, rating_description, f.rental_rate
