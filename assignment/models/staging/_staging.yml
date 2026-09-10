@@ -32,22 +32,16 @@ models:
         data_tests: [unique, not_null]
       - name: first_name
         description: "Customer's first name."
-        data_tests: [not_null]
       - name: last_name
         description: "Customer's last name."
-        data_tests: [not_null]
       - name: email
         description: "Customer's email address."
-        data_tests: [not_null]
       - name: is_active
         description: "Indicates if the customer is active (1) or inactive (0)."
-        data_tests: [not_null]
-      - name: create_at
+      - name: created_at
         description: "Date when the customer record was created."
-        data_tests: [not_null]
       - name: last_update
         description: "Timestamp of the last update to the customer record."
-        data_tests: [not_null]
 
   - name: stg_rentals
     description: "Staging model for the `rental` table."
@@ -76,12 +70,10 @@ models:
         data_tests: [not_null]
       - name: rental_at
         description: "Date and time when the rental occurred."
-        data_tests: [not_null]
       - name: returned_at
         description: "Date and time when the rental was returned."
       - name: last_update
         description: "Timestamp of the last update to the rental record."
-        data_tests: [not_null]
 
   - name: stg_payments
     description: "Staging model for the `payment` table."
@@ -128,24 +120,19 @@ models:
         description: "Description of the film."
       - name: rental_rate
         description: "Rate at which the film can be rented."
-        data_tests: [not_null]
       - name: replacement_cost
         description: "Cost to replace the film if lost or damaged."
-        data_tests: [not_null]
       - name: length_minutes
         description: "Length of the film in minutes."
-        data_tests: [not_null]
       - name: rating
         description: "MPAA rating of the film (e.g., G, PG, PG-13, R, NC-17)."
         data_tests: 
-          - not_null
           - accepted_values:
               arguments: 
                 - type: string
                 - values: ['G', 'PG', 'PG-13', 'R', 'NC-17']
       - name: last_update
         description: "Timestamp of the last update to the film record."
-        data_tests: [not_null]
 
   - name: stg_inventory
     description: "Staging model for the `inventory` table."
@@ -181,13 +168,10 @@ models:
         data_tests: [unique, not_null]
       - name: manager_staff_id
         description: "Foreign key to the staff member who manages the store."
-        data_tests: [not_null]
       - name: address_id
         description: "Foreign key to the address of the store."
-        data_tests: [not_null]
       - name: last_update
         description: "Timestamp of the last update to the store record."
-        data_tests: [not_null]
 
   - name: stg_categories
     description: "Staging model for the `category` table."

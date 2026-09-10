@@ -15,15 +15,14 @@ models:
         data_tests: [not_null]
       - name: first_rented_at
         description: "Date of the customer's first rental."
-        data_tests: [not_null]
       - name: last_rented_at
         description: "Date of the customer's most recent rental."
-        data_tests: [not_null]
       - name: lifetime_payment_total
         description: "Total amount of money spent by the customer."
         data_tests: [not_null]
       - name: average_payment_value
         description: "Average payment value for the customer."
+        data_tests: [not_null]
   
   - name: mart_daily_revenue
     description: "Daily revenue mart — aggregates daily rental and payment data."
