@@ -23,7 +23,7 @@ select
     p.staff_id,
     i.store_id,
     p.rental_id,
-    r.film_id,
+    i.film_id,
     f.title as film_title,
     p.amount
 from stg_payments p
