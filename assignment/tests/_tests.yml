@@ -1,3 +1,5 @@
+version: 2
+
 data_tests:
   - name: assert_customer_performance_matches_rentals
     description: >

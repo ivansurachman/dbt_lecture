@@ -1,3 +1,5 @@
+version: 2
+
 snapshots:
   - name: snap_customers
     relation: ref('stg_customers')
@@ -7,7 +9,7 @@ snapshots:
       strategy: timestamp
       check_cols: ['customer_name']
       updated_at: last_update
-      
+
   - name: snap_films
     relation: ref('stg_films')
     config:
