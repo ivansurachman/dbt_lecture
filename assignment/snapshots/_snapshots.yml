@@ -1,0 +1,18 @@
+snapshots:
+  - name: snap_customers
+    relation: ref('stg_customers')
+    config:
+      target_schema: snapshots
+      unique_key: customer_id
+      strategy: timestamp
+      check_cols: ['customer_name']
+      updated_at: last_update
+      
+  - name: snap_films
+    relation: ref('stg_films')
+    config:
+      target_schema: snapshots
+      unique_key: film_id
+      strategy: timestamp
+      check_cols: ['title', 'rental_rate', 'rating', 'description']
+      updated_at: last_update
