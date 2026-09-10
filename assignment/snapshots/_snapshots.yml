@@ -6,7 +6,7 @@ snapshots:
     config:
       target_schema: snapshots
       unique_key: customer_id
-      strategy: timestamp
+      strategy: timestamp | check
       check_cols: ['customer_name']
       updated_at: last_update
 
@@ -15,6 +15,6 @@ snapshots:
     config:
       target_schema: snapshots
       unique_key: film_id
-      strategy: timestamp
+      strategy: timestamp | check
       check_cols: ['title', 'rental_rate', 'rating', 'description']
       updated_at: last_update
