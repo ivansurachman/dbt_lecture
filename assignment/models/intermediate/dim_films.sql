@@ -5,7 +5,7 @@ with stg_films as (
 ratings_desc as (
     select 
         rating,
-        rating_description
+        description
     from {{ ref('rating_descriptions') }}
 ),
 stg_film_category as (
@@ -25,7 +25,7 @@ select
     f.title,
     string_agg(distinct c.name, ', ' order by c.name) as category,
     f.rating,
-    rd.rating_description,
+    rd.description as rating_description,
     f.rental_rate,
     coalesce(count(i.inventory_id), 0) as inventory_count,
     coalesce(count(r.rental_id), 0) as times_rented,

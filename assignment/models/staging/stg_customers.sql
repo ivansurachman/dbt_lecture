@@ -9,6 +9,6 @@ select
     last_name,
     email,
     activebool as is_active,
-    create_at,
+    create_date as created_at,
     last_update
 from source
