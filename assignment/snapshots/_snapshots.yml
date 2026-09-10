@@ -6,15 +6,13 @@ snapshots:
     config:
       target_schema: snapshots
       unique_key: customer_id
-      strategy: timestamp | check
+      strategy: check
       check_cols: ['customer_name']
-      updated_at: last_update
 
   - name: snap_films
     relation: ref('stg_films')
     config:
       target_schema: snapshots
       unique_key: film_id
-      strategy: timestamp | check
+      strategy: check
       check_cols: ['title', 'rental_rate', 'rating', 'description']
-      updated_at: last_update
