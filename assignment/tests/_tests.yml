@@ -1,12 +1,12 @@
 data_tests:
   - name: assert_customer_performance_matches_rentals
     description: >
-      Checks:
-      The total total_rentals in mart_customer_performance matches the number of rentals in stg_rentals.
-      The total lifetime_payment_total in mart_customer_performance matches the total amount in stg_payments.
+      Checks->
+      1. The total total_rentals in mart_customer_performance matches the number of rentals in stg_rentals.
+      2. The total lifetime_payment_total in mart_customer_performance matches the total amount in stg_payments.
   
   - name: assert_film_performance_matches_rentals
     description: >
-      Checks:
-      The total total_revenue in mart_daily_revenue matches the total amount in stg_payments.
-      The total total_payments in mart_daily_revenue matches the number of payments in stg_payments.
+      Checks->
+      1. The total total_revenue in mart_daily_revenue matches the total amount in stg_payments.
+      2. The total total_payments in mart_daily_revenue matches the number of payments in stg_payments.
