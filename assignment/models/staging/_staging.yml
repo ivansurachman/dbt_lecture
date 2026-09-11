@@ -129,8 +129,12 @@ models:
         data_tests: 
           - accepted_values:
               arguments: 
-                - type: string
-                - values: ['G', 'PG', 'PG-13', 'R', 'NC-17']
+                values: 
+                  - G 
+                  - PG
+                  - PG-13
+                  - R
+                  - NC-17
       - name: last_update
         description: "Timestamp of the last update to the film record."
 

@@ -1,27 +1,33 @@
 -- Customer dimension table
+
 with stg_customers as (
     select * from {{ ref('stg_customers') }}
 ),
-stg_rentals as (
-    select * from {{ ref('stg_rentals') }}
+rental_metrics as (
+    select
+        customer_id,
+        count(rental_id) as total_rentals,
+        min(rental_at) as first_rented_at,
+        max(rental_at) as last_rented_at
+    from {{ ref('stg_rentals') }}
+    group by customer_id
 ),
-stg_payments as (
-    select * from {{ ref('stg_payments') }}
+payment_metrics as (
+    select
+        customer_id,
+        sum(amount) as lifetime_payment_total
+    from {{ ref('stg_payments') }}
+    group by customer_id
 )
-select 
+select
     c.customer_id,
     concat(c.first_name, ' ', c.last_name) as customer_name,
-    case 
-        when count(r.rental_id) is null then 0
-        else count(r.rental_id)
-    end as total_rentals,
-    min(r.rental_at) as first_rented_at,
-    max(r.rental_at) as last_rented_at,
-    case 
-        when sum(p.amount) is null then 0
-        else sum(p.amount)
-    end as lifetime_payment_total
+    coalesce(r.total_rentals, 0) as total_rentals,
+    r.first_rented_at,
+    r.last_rented_at,
+    coalesce(p.lifetime_payment_total, 0) as lifetime_payment_total
 from stg_customers c
-left join stg_rentals r on c.customer_id = r.customer_id
-left join stg_payments p on c.customer_id = p.customer_id
-group by c.customer_id, customer_name
+left join rental_metrics r
+    on c.customer_id = r.customer_id
+left join payment_metrics p
+    on c.customer_id = p.customer_id

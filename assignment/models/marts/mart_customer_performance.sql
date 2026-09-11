@@ -9,5 +9,5 @@ select
     c.first_rented_at,
     c.last_rented_at,
     c.lifetime_payment_total,
-    c.lifetime_payment_total / nullif(c.total_rentals, 0) as average_payment_value
+    coalesce(c.lifetime_payment_total / nullif(c.total_rentals, 0), 0) as average_payment_value
 from dim_customers c
