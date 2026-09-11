@@ -8,7 +8,7 @@ with stg_rentals as (
 metrics_rental as (
     select 
         customer_id,
-        count(*) as total_rentals
+        coalesce(count(*), 0) as total_rentals
     from stg_rentals
     group by customer_id
 ),
@@ -18,7 +18,7 @@ stg_payments as (
 metrics_payment as (
     select 
         customer_id,
-        sum(amount) as lifetime_payment_total
+        coalesce(sum(amount), 0) as lifetime_payment_total
     from stg_payments
     group by customer_id
 )
